@@ -13,6 +13,10 @@ function Calculator() {
   }
 
   function backSpace(){
+    if(result==="Error"){
+      Setresult("");
+      return;
+    }
     Setresult(result.slice(0,-1));
   }
 
