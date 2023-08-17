@@ -5,7 +5,21 @@ function Calculator() {
   let [result,Setresult]=useState("");
   
   function handleChange(e){
+    let lastEle= result[result.length-1]
+    lastEle = Number(lastEle)
+    // console.log(lastEle)
+    if(Number(e.target.name) > -1 && Number(e.target.name) < 10){
+      
     Setresult(result.concat(e.target.name))
+    }
+
+    else if(lastEle > -1 && lastEle < 10){
+      
+      Setresult(result.concat(e.target.name))
+      }
+
+    // Setresult(result.concat(e.target.name))
+    
   }
 
   function clear(){
@@ -21,11 +35,25 @@ function Calculator() {
   }
 
   function calculate(){
-    try{
-      Setresult(eval(result).toString());
-    }catch(error){
-      Setresult("Error");
+    let lastEle= result[result.length-1]
+    if(lastEle==="+" || lastEle==="-" || lastEle==="*" || lastEle==="/" || lastEle==="%"){ 
+      return;
     }
+    // console.log('hi',lastEle);
+    lastEle = Number(lastEle);
+    console.log("last",lastEle);
+    // "use strict";
+     try{
+      
+      var res=eval(result).toString();
+      console.log(res);
+      Setresult(res);
+
+     }catch(e){
+        console.log("error",e);
+        Setresult("Error");
+     }
+    
   }
   
     return (
